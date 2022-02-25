@@ -1,10 +1,14 @@
 from fastapi import FastAPI
-from fastapi.responses import UJSONResponse
+from fastapi.responses import ORJSONResponse
+from pydantic import BaseModel
 
 from scrapper import findElement, getJSON
 
 app = FastAPI()
 
-@app.post("/api/chem-wiki", response_class=UJSONResponse)
-async def information(element: str):
-    return (getJSON(element))
+class Data(BaseModel):
+    name: str
+
+@app.post("/api/chem-wiki", response_class=ORJSONResponse)
+async def information(element: Data):
+    return (getJSON(element.name))

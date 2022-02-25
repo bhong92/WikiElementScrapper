@@ -17,6 +17,7 @@ def findElement(element):
         return allTxt[rTxt:cTxt]
 
 def getJSON(e):
+    print(e)
     info = findElement(e)
     element = {e: info}
 
@@ -25,4 +26,6 @@ def getJSON(e):
 
     with open('example.json', 'w', encoding="utf-8") as outfile:
         outfile.write(jsonFile)
+
+
 
